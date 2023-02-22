@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :habits
+  resources :habit_completions
+  resources :categories
+  resources :users
 
   # route to test your configuration
   get '/hello', to: 'application#hello_world'
