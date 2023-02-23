@@ -1,0 +1,12 @@
+
+.hp-wrapper {
+    background-image: url("../pictures/Habit2.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 86vh;
+    text-align: center;
+    font-family: "Kalam", cursive;
+    color: whitesmoke;
+    border-radius: 40px;
+}

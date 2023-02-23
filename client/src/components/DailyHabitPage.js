@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/DailyHabitPage.css";
 
 
 function DailyHabitPage() {
@@ -6,9 +7,9 @@ function DailyHabitPage() {
 
 
     return (
-        <div>
+        <div className="dhp-wrapper">
             <h1>
-                Daily Habits Page!
+                Daily Habits Checklist!
             </h1>
         </div>
     );

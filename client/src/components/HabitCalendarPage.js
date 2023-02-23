@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/HabitCalendarPage.css";
 
 
 function HabitCalendarPage() {
@@ -6,7 +7,7 @@ function HabitCalendarPage() {
 
 
     return (
-        <div>
+        <div className="hcp-wrapper">
             <h1>
                 Calendar Page!
             </h1>

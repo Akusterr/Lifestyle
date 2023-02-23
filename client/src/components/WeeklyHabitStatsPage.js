@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/WeeklyHabitStatsPage.css";
 
 
 function WeeklyHabitStatsPage() {
@@ -6,7 +7,7 @@ function WeeklyHabitStatsPage() {
 
 
     return (
-        <div>
+        <div className="whsp-wrapper">
             <h1>
                 Stats Page!
             </h1>

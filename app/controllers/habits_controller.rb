@@ -12,8 +12,20 @@ class HabitsController < ApplicationController
     end
 
     def create
-        habit = Habit.create(user_params)
+        habit = Habit.create(habit_params)
         render json: habit, status: :created
+    end
+
+    def update 
+        habit = Habit.find(params[:id])
+        Habit.update!(habit_params)
+        render json: habit, status: :accepted
+    end
+
+    def destroy
+        habit = Habit.find(params[:id])
+        habit.destroy
+        render json: {}, status: :ok
     end
 
     private

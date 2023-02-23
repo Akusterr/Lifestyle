@@ -11,10 +11,16 @@ function Navbar() {
         <div className="nav">
             <nav>
                 <div>
-                    <Link to="/">Home</Link>
+                    <Link to="/">Login</Link>
                 </div>
                 <div>
-                    <Link to="/dailyHabitPage">Daily Habits List</Link>
+                    <Link to="/registrationPage">Register</Link>
+                </div>
+                <div>
+                    <Link to="/homePage">Home</Link>
+                </div>
+                <div>
+                    <Link to="/dailyHabitPage">Daily Habits Checklist</Link>
                 </div>
                 <div>
                     <Link to="/habitCalendarPage">Calendar</Link>
