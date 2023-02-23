@@ -1,10 +1,10 @@
 .App {
   text-align: center;
-  color: whitesmoke
+  color: black;
 }
 
 body {
-  background-color: #282c34;
+  background-color: whitesmoke;
 }
 
 .App-logo {
