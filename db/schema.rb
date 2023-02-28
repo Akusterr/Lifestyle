@@ -14,8 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_162639) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  
-
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -33,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_162639) do
     t.string "goal"
     t.integer "frequency_num"
     t.string "frequency_denominator"
-    t.integer "start_date"
+    t.datetime "start_date"
     t.integer "display_order"
     t.integer "category_id"
     t.datetime "created_at", null: false
@@ -43,7 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_162639) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

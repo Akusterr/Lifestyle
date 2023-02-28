@@ -3,13 +3,25 @@ import "./styles/Navbar.css";
 import { Outlet, Link } from "react-router-dom";
 
 
-function Navbar() {
+function Navbar({onUser, setOnUser}) {
+
+    // const handleLogout = () => {
+    //     fetch("/logout", {
+    //         method: "DELETE"
+    //     }).then((resp => {
+    //         if (resp.ok){
+    //             setOnUser(null)
+    //             window.location.href = "http://localhost:4000/home"
+    //         }
+    //     }))
+
+    // }
 
 
 
     return (
-        <div className="nav">
-            <nav>
+        <div >
+            <nav className="nav">
                 <div>
                     <Link to="/">Login</Link>
                 </div>
@@ -31,6 +43,7 @@ function Navbar() {
                 <div>
                     <Link to="/weeklyHabitStatsPage">Stats</Link>
                 </div>
+                {/* <button onClick={handleLogout}>Logout</button> */}
             </nav>
 
             <Outlet />

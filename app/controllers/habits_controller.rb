@@ -1,3 +1,4 @@
+require 'byebug'
 class HabitsController < ApplicationController
 
 
@@ -12,7 +13,14 @@ class HabitsController < ApplicationController
     end
 
     def create
-        habit = Habit.create(habit_params)
+        habit_data = {
+            category_id: params[:category_id],
+            goal: params[:goal],
+            start_date: params[:start_date],
+            frequency_num: params[:frequency_num],
+            user_id: params[:user_id]
+        }
+        habit = Habit.create!(habit_data)
         render json: habit, status: :created
     end
 

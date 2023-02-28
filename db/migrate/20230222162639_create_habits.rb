@@ -5,7 +5,7 @@ class CreateHabits < ActiveRecord::Migration[7.0]
       t.string :goal
       t.integer :frequency_num
       t.string :frequency_denominator
-      t.integer :start_date
+      t.datetime :start_date
       t.integer :display_order
       t.integer :category_id
 

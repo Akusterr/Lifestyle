@@ -9,7 +9,7 @@ function HomePage() {
         <div className="hp-wrapper">
             <div>
                 <h1>
-                    Ready to create your ideal <strong>Lifestyle</strong>? <Link exact to='/newHabitFormPage'>Create a habit!</Link>
+                    Ready to create your ideal <strong>Lifestyle</strong>? Find your daily <Link exact to='/dailyHabitPage'>checklist</Link>
                 </h1>
             </div>
         </div>

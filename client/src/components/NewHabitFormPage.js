@@ -1,23 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles/NewHabitFormPage.css";
-import { Link } from "react-router-dom"
 
 
-function NewHabitFormPage() {
+function NewHabitFormPage(props) {
     const [goal, setGoal] = useState("")
     const [frequency, setFrequency] = useState([])
-    const [category, setCategory] = useState([])
+    const [category, setCategory] = useState(1)
     const [startDate, setStartDate] = useState([])
+    const [categories, setCategories] = useState([])
+
+    const onUser = props.onUser || {};
+
+    useEffect(()=>{
+        fetch('/categories')
+        .then((resp) => resp.json())
+        .then((cats) => setCategories(cats))
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        const date = new Date(startDate);
 
         let goalInfo = {
             goal: goal,
             frequency_num: frequency,
             category_id: category,
-            start_date: startDate
+            start_date: date.getTime(),
+            user_id: onUser.id
         }
+
+        console.log(goalInfo)
 
         fetch("/goals", {
             method: 'POST',
@@ -32,27 +45,18 @@ function NewHabitFormPage() {
 
     }
 
-
-
-
     return (
         <div className="nhfp-wrapper">
             <form onSubmit={handleSubmit}>
                 <h3>Create Your Account</h3>
                 <input type="text" name="goal" placeholder="New Habit Goal" value={goal} onChange={(e) => setGoal(e.target.value)} />
                 <input type="number" name="frequency" placeholder="Times Daily" value={frequency} onChange={(e) => setFrequency(e.target.value)} />
-                <input type="text" name="category" placeholder="Goal Category" value={category} onChange={(e) => setCategory(e.target.value)} />
+                <select onChange={(e) =>  setCategory(e.target.value)}>
+                    {categories.map((cat) => <option value={cat.id}>{cat.name}</option>)}
+                </select>
                 <input type="date" name="start date" placeholder="" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-          
-                <button type="submit">Create A New Habit!</button>
+                <button type="submit">Create A New Habit</button>
             </form>
-            <br />
-
-            <div>
-                <h1>
-                    <Link exact to='/weeklyHabitStatsPage'>Tracker your progress</Link>
-                </h1>
-            </div>
         </div>
     );
 }

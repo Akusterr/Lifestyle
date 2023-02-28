@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   #Create a new goal
   post "/goals", to: "habits#create"
 
+  #Get all habits to render on DOM
+  get "/habits", to: "habits#show"
+
+  get "/users/:userId/habits", to: "users#userHabits"
 
 
 
