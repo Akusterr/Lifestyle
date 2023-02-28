@@ -68,7 +68,7 @@ function HabitCalendarPage(props) {
             </div>
             <div>
                 <h3>
-                    Check your progress wit your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
+                    Check your progress with your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
                 </h3>
             </div>
             <div>

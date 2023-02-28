@@ -29,15 +29,18 @@ function App() {
   return (
     <div>
     <Router>
-      <Navbar onUser={onUser} setOnUser={setOnUser} />
       <Routes>
-        <Route path="/" element={<LoginPage onUser={onUser} setOnUser={setOnUser} />} />
+        <Route exact path="/" element={<Navbar onUser={onUser} setOnUser={setOnUser} />} >
+
+        <Route path="/loginPage" element={<LoginPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/dailyHabitPage" element={<DailyHabitPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/habitCalendarPage" element={<HabitCalendarPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/newHabitFormPage" element={<NewHabitFormPage onUser={onUser} />}/>
         <Route path="/weeklyHabitStatsPage" element={<WeeklyHabitStatsPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/registrationPage" element={<RegistrationPage />} />
         <Route path="/homePage" element={<HomePage />} />
+
+        </Route>
       </Routes>
     </Router>
     </div>

@@ -32,12 +32,6 @@ function LoginPage() {
       
     }
 
-    // const addPerson = (user) => {
-    //     setLogin(user)
-        // window.location.href = 'http://localhost:4000/homePage'
-        // {login ? (console.log("logged in")) : (console.log("not logged in!"))}
-    
-
 
     return (
         <div className="lp-wrapper">

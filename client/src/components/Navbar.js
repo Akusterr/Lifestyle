@@ -5,29 +5,22 @@ import { Outlet, Link } from "react-router-dom";
 
 function Navbar({onUser, setOnUser}) {
 
-    // const handleLogout = () => {
-    //     fetch("/logout", {
-    //         method: "DELETE"
-    //     }).then((resp => {
-    //         if (resp.ok){
-    //             setOnUser(null)
-    //             window.location.href = "http://localhost:4000/home"
-    //         }
-    //     }))
+    const handleLogout = () => {
+        fetch("/logout", {
+            method: "DELETE"
+        }).then((resp => {
+            if (resp.ok){
+                setOnUser(null)
+                window.location.href = "http://localhost:4000/loginPage"
+            }
+        }))
 
-    // }
-
-
+    }
 
     return (
-        <div >
-            <nav className="nav">
-                <div>
-                    <Link to="/">Login</Link>
-                </div>
-                <div>
-                    <Link to="/registrationPage">Register</Link>
-                </div>
+        <div>
+            {onUser ? (
+            <nav className="nav">        
                 <div>
                     <Link to="/homePage">Home</Link>
                 </div>
@@ -43,8 +36,17 @@ function Navbar({onUser, setOnUser}) {
                 <div>
                     <Link to="/weeklyHabitStatsPage">Stats</Link>
                 </div>
-                {/* <button onClick={handleLogout}>Logout</button> */}
+                <button onClick={handleLogout}>Logout</button>
             </nav>
+                ) : (
+            <nav className="nav">
+                <div>
+                    <Link to="/loginPage">Login</Link>
+                </div>
+                <div>
+                    <Link to="/registrationPage">Register</Link>
+                </div>
+            </nav>)}
 
             <Outlet />
         </div>

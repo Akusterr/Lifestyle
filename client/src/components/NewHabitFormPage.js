@@ -47,6 +47,7 @@ function NewHabitFormPage(props) {
 
     return (
         <div className="nhfp-wrapper">
+
             <form onSubmit={handleSubmit}>
                 <h3>Create Your Account</h3>
                 <input type="text" name="goal" placeholder="New Habit Goal" value={goal} onChange={(e) => setGoal(e.target.value)} />
@@ -57,6 +58,7 @@ function NewHabitFormPage(props) {
                 <input type="date" name="start date" placeholder="" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
                 <button type="submit">Create A New Habit</button>
             </form>
+            
         </div>
     );
 }

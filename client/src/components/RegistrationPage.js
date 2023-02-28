@@ -44,7 +44,7 @@ function RegistrationPage() {
             </div>
             <div>
                 <h2>
-                    Already have an account? Login <Link exact to='/'>Here</Link>
+                    Already have an account? Login <Link exact to='/loginPage'>Here</Link>
                 </h2>
             </div>
         </div>

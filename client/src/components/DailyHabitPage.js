@@ -55,9 +55,11 @@ function DailyHabitPage(props) {
                 <button onClick={handleClick} >Saturday</button>
                 <button onClick={handleClick} >Sunday</button>
             </div>
+            <div className="habits">
             <br />
                 <DailyHabitList habits={habits}/>
             <br />
+            </div>
             <div>
                 <button>
                     <Link exact to='/newHabitFormPage'>Start a new habit today</Link>
