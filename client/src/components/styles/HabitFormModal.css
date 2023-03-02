@@ -1,0 +1,17 @@
+
+.habitForm {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+
+}
+
+.whoNeedsSemantic {
+    height: 36px;
+    border-color: lightgrey;
+    padding-left: 10px;
+}
+
+.modalWrapper {
+    text-align: center;
+}

@@ -1,4 +1,14 @@
 
 .dhp-wrapper {
     text-align: center;
+    padding: 30px;
+}
+
+.box {
+    position: absolute;
+    cursor: move;
+    color: black;
+    border-radius: 5px; 
+    margin: auto;
+    user-select: none;
 }

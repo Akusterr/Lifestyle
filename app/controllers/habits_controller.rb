@@ -9,7 +9,7 @@ class HabitsController < ApplicationController
 
     def show
         habit = Habit.find(params[:id])
-        render json: habit, status: :ok
+        render json: habit, serializer: HabitHabitCompletionSerializer, status: :ok
     end
 
     def create
@@ -26,7 +26,9 @@ class HabitsController < ApplicationController
 
     def update 
         habit = Habit.find(params[:id])
-        Habit.update!(habit_params)
+        habit.attributes = habit_params
+        habit.save!
+        # Habit.update!(habit_params)
         render json: habit, status: :accepted
     end
 

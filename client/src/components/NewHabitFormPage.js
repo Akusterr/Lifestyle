@@ -4,10 +4,13 @@ import "./styles/NewHabitFormPage.css";
 
 function NewHabitFormPage(props) {
     const [goal, setGoal] = useState("")
-    const [frequency, setFrequency] = useState([])
-    const [category, setCategory] = useState(1)
+    const [frequency, setFrequency] = useState(0)
+    const [category, setCategory] = useState("")
     const [startDate, setStartDate] = useState([])
     const [categories, setCategories] = useState([])
+
+
+    // console.log(frequency)
 
     const onUser = props.onUser || {};
 
@@ -24,7 +27,7 @@ function NewHabitFormPage(props) {
 
         let goalInfo = {
             goal: goal,
-            frequency_num: frequency,
+            frequency_num: parseInt(frequency),
             category_id: category,
             start_date: date.getTime(),
             user_id: onUser.id
@@ -51,7 +54,7 @@ function NewHabitFormPage(props) {
             <form onSubmit={handleSubmit}>
                 <h3>Create Your Account</h3>
                 <input type="text" name="goal" placeholder="New Habit Goal" value={goal} onChange={(e) => setGoal(e.target.value)} />
-                <input type="number" name="frequency" placeholder="Times Daily" value={frequency} onChange={(e) => setFrequency(e.target.value)} />
+                <input type="number" name="frequency" placeholder="Times Daily" value={frequency} onChange={(e) => setFrequency(parseInt(e.target.value))} />
                 <select onChange={(e) =>  setCategory(e.target.value)}>
                     {categories.map((cat) => <option value={cat.id}>{cat.name}</option>)}
                 </select>

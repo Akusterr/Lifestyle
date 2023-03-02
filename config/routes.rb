@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get "/users/:userId/habits", to: "users#userHabits"
 
+  post "/habits/:habitId/habitCompletions", to: "habit_completions#create"
+
 
 
   

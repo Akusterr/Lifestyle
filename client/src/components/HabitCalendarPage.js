@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./styles/HabitCalendarPage.css";
 import 'react-calendar/dist/Calendar.css';
+import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
 import Calendar from 'react-calendar'
 import { Link } from "react-router-dom"
 import DailyHabitCard from "./DailyHabitCard";
@@ -14,7 +15,8 @@ function HabitCalendarPage(props) {
     // const [relationships, setRelationships] = useState("")
     const [categories, setCategories] = useState([])
     const [habits, setHabits] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState('ALL');
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [value, onChange] = useState(new Date());
     
     const handleClick = (e) => {
         setSelectedCategory(e.target.value)
@@ -35,9 +37,8 @@ function HabitCalendarPage(props) {
     }, [])
 
     const selectedHabits = selectedCategory === 'ALL' ? habits : habits.filter(h => h.category_id === parseInt(selectedCategory));
-    console.log({habits, selectedCategory, selectedHabits})
+    // console.log({habits, selectedCategory, selectedHabits})
 
-    const [value, onChange] = useState(new Date());
 
     const tileClasses = ({date, view}) => {
         // console.log({date, view})
@@ -46,17 +47,19 @@ function HabitCalendarPage(props) {
         }
     }
 
+    
+
     return (
         <div className="hcp-wrapper">
             <div>
-                <header>
+                <Header>
                     <h2>
-                        Categories:
+                        Categories
                     </h2>
                     
-                </header>
-                {categories.map((cat) => <button value={cat.id} onClick={handleClick}>{cat.name}</button>)}
-                <button value={'ALL'} onClick={handleClick}>All</button>
+                </Header>
+                {categories.map((cat) => <Button value={cat.id} onClick={handleClick}>{cat.name}</Button>)}
+                <Button value={'ALL'} onClick={handleClick}>All</Button>
             </div>
 
             <div className="Sample__container">
@@ -71,9 +74,11 @@ function HabitCalendarPage(props) {
                     Check your progress with your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
                 </h3>
             </div>
+            <br />
             <div>
+                <h1>Selected Habits:</h1>
                 {
-                    selectedHabits.map((habit) => <DailyHabitCard habit={habit} />)
+                    selectedHabits.map((habit) => <h3>{habit.goal}</h3>)
                 }
             </div>
         </div>

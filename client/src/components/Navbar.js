@@ -30,9 +30,9 @@ function Navbar({onUser, setOnUser}) {
                 <div>
                     <Link to="/habitCalendarPage">Calendar</Link>
                 </div>
-                <div>
+                {/* <div>
                     <Link to="/newHabitFormPage">Create a Habit</Link>
-                </div>
+                </div> */}
                 <div>
                     <Link to="/weeklyHabitStatsPage">Stats</Link>
                 </div>

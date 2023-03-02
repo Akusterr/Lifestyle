@@ -2,6 +2,9 @@
   "dependencies": {
     "chart.js": "^4.2.1",
     "react-calendar": "^4.0.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-draggable": "^4.4.5",
     "react-router-dom": "^6.8.1"
   }
 }

@@ -3,22 +3,72 @@ import "./styles/DailyHabitPage.css";
 import { Link } from "react-router-dom"
 import DailyHabitList from "./DailyHabitList";
 import moment from 'moment';
+import HabitFormModal from "./HabitFormModal";
+import {Button} from 'semantic-ui-react';
+import Draggable from 'react-draggable';
+
+
 
 
 function DailyHabitPage(props) {
-    console.log(props)
+
+    const [detailHabit, setDetailHabit] = useState({})
     const [habits, setHabits] = useState([])
+    const [modalOpen, setModalOpen] = useState(false)
+    const [selectedDate, setSelectedDate] = useState(new Date())
     const onUser = props.onUser || {};
+    const selectedDateString = `${selectedDate.getDay()}/${selectedDate.getMonth()}/${selectedDate.getYear()}`;
+
+    const days= [
+        {
+            name:'Monday',
+            idx: 1
+        },
+        {
+            name: 'Tuesday',
+            idx: 2
+        },
+        {
+            name: 'Wednesday',
+            idx: 3
+        },
+        {
+            name: 'Thursday',
+            idx: 4
+        },
+        {
+            name: 'Friday',
+            idx: 5
+        },
+        {
+            name: 'Saturday',
+            idx: 6
+        },
+        {
+            name: 'Sunday',
+            idx: 0
+        }
+    ]   
+
+    const fetchHabits = () => {
+        fetch(`/users/${onUser.id}/habits`)
+            .then(resp => resp.json())
+            .then(hab => setHabits(hab))
+    }
 
     useEffect(() => {
-        fetch(`/users/${onUser.id}/habits`)
-        .then(resp => resp.json())
-        .then(hab => setHabits(hab))
+        fetchHabits();
     }, [])
 
-    const handleClick = (e) => {
-        e.preventDefault()
-
+    const handleClickDate = (date) => {
+        console.log(date)
+        const selectedDayIdx = selectedDate.getDay();
+        // set selectedDate = the date that was just clicked
+        const multiplier = date.idx - selectedDayIdx;
+        const millisToTravel = multiplier *  1000 * 60 * 60 * 24
+        const newSelectedDate = new Date(selectedDate.getTime() + millisToTravel);
+        console.log({selectedDate, date, newSelectedDate})
+        setSelectedDate(newSelectedDate);
     }
 
     const renderDate = () => {
@@ -35,36 +85,59 @@ function DailyHabitPage(props) {
         return <h1>{firstday} - {lastday}</h1>
      }
 
+     const openModalForEdit = (habit) => {
+        setDetailHabit(habit)
+        setModalOpen(true)
+     }
+
+     const completeHabits = [];
+     const incompleteHabits = [];
+     habits.forEach(hab => {
+        const habitIsComplete = !!hab.habit_completion.find((hc) => {
+            // find a habit completion that happend today
+            const hcDate = new Date(hc.created_at);
+            const hcDateString = `${hcDate.getDay()}/${hcDate.getMonth()}/${hcDate.getYear()}`;
+            console.log(hcDateString, '---', selectedDateString)
+            return hcDateString === selectedDateString;
+        })
+
+        if(habitIsComplete){
+            completeHabits.push(hab)
+        } else {
+            incompleteHabits.push(hab)
+        }
+     })
+
     return (
         <div className="dhp-wrapper">
             <div>
                 {renderDate()}
             </div>
-             <div>
-                <button>
+            <br />
+            <HabitFormModal open={modalOpen} setOpen={setModalOpen} habit={detailHabit} fetchHabits={fetchHabits} onUser={onUser}/>
+            <br />
+            <div>
+                <Button>
                     <Link exact to='/habitCalendarPage'>Calendar</Link>
-                </button>
+                </Button>
             </div>
             <br />
             <div>
-                <button onClick={handleClick} >Monday</button>
-                <button onClick={handleClick} >Tuesday</button>
-                <button onClick={handleClick} >Wednesday</button>
-                <button onClick={handleClick} >Thursday</button>
-                <button onClick={handleClick} >Friday</button>
-                <button onClick={handleClick} >Saturday</button>
-                <button onClick={handleClick} >Sunday</button>
+                {days.map((date) => {
+                    return <Button onClick={()=> handleClickDate(date)} primary={selectedDate.getDay() === date.idx}>{date.name}</Button>
+                })}
             </div>
-            <div className="habits">
-            <br />
-                <DailyHabitList habits={habits}/>
-            <br />
-            </div>
-            <div>
-                <button>
-                    <Link exact to='/newHabitFormPage'>Start a new habit today</Link>
-                </button>
-            </div>
+
+           
+                    <div className="habits">
+                        <br />
+                        <h1>To Do:</h1>
+                        <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={incompleteHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
+                        <h1>Completed for today:</h1>
+                        <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={completeHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
+                        <br />
+                    </div>
+                
         </div>
     );
 }
