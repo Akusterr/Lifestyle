@@ -1,12 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./styles/WeeklyHabitStatsPage.css";
+import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
 import moment from 'moment';
+ import {DarkModeContext} from '../context/DarkModeContext'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 
 
 
 function WeeklyHabitStatsPage() {
+    const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
+
+    const handleDarkModeClick = () => {
+        toggleDarkMode();
+    }
 
 
     ChartJS.register(ArcElement, Tooltip, Legend);
@@ -27,17 +34,19 @@ function WeeklyHabitStatsPage() {
     }
 
     return (
-
-        
-        <div className="whsp-wrapper">
-            <div>
-                {renderDate()}
-            </div>
-            <br />
-            <div>
-                <h1>
-                    Weekly Stats
-                </h1>
+        <div className={darkMode ? `dark` : `light`} >
+            <div className="whsp-wrapper">
+                <div>
+                    {renderDate()}
+                </div>
+                <br />
+                <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
+                <br />
+                <div>
+                    <h1>
+                        Weekly Stats
+                    </h1>
+                </div>
             </div>
         </div>
     );

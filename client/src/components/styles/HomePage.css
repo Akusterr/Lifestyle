@@ -1,12 +1,23 @@
 
+.dark {
+    background-color: #5A5F5A;
+    color: whitegrey;
+}
+
+.light {
+    background-color: whitesmoke;
+    color: darkslategrey;
+}
+
 .hp-wrapper {
-    background-image: url("../pictures/everest.webp");
+    /* background-image: url("../pictures/habit-zen.jpeg"); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 86vh;
+    height: 100vh;
     text-align: center;
     font-family: "Kalam", cursive;
-    color: whitesmoke;
-    border-radius: 40px;
 }
+
+
+

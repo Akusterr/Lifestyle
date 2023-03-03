@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image, Icon} from 'semantic-ui-react'
 import Draggable from 'react-draggable';
 
 

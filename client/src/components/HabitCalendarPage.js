@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import "./styles/HabitCalendarPage.css";
 import 'react-calendar/dist/Calendar.css';
 import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
 import Calendar from 'react-calendar'
 import { Link } from "react-router-dom"
-import DailyHabitCard from "./DailyHabitCard";
+import {DarkModeContext} from '../context/DarkModeContext'
+
 
 
 function HabitCalendarPage(props) {
+    const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     // const [fitness, setFitness] = useState("")
     // const [diet, setDiet] = useState("")
     // const [personalHealth, setPersonalHealth] = useState("")
@@ -20,6 +22,10 @@ function HabitCalendarPage(props) {
     
     const handleClick = (e) => {
         setSelectedCategory(e.target.value)
+    }
+
+    const handleDarkModeClick = () => {
+        toggleDarkMode();
     }
 
     const onUser = props.onUser || {};
@@ -50,36 +56,40 @@ function HabitCalendarPage(props) {
     
 
     return (
-        <div className="hcp-wrapper">
-            <div>
-                <Header>
-                    <h2>
-                        Categories
-                    </h2>
-                    
-                </Header>
-                {categories.map((cat) => <Button value={cat.id} onClick={handleClick}>{cat.name}</Button>)}
-                <Button value={'ALL'} onClick={handleClick}>All</Button>
-            </div>
+        <div className={darkMode ? `dark` : `light`} >
+            <div className="hcp-wrapper">
+                <div>
+                    <Header>
+                        <h2>
+                            Categories
+                        </h2>
+                        
+                    </Header>
+                    {categories.map((cat) => <Button value={cat.id} onClick={handleClick}>{cat.name}</Button>)}
+                    <Button value={'ALL'} onClick={handleClick}>All</Button>
+                </div>
+                <br />
+                <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
 
-            <div className="Sample__container">
-                <main className="Sample__container__content">
-                <Calendar
-                    tileClassName={tileClasses}
-                    onChange={onChange} showWeekNumbers value={value} />
-                </main>
-            </div>
-            <div>
-                <h3>
-                    Check your progress with your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
-                </h3>
-            </div>
-            <br />
-            <div>
-                <h1>Selected Habits:</h1>
-                {
-                    selectedHabits.map((habit) => <h3>{habit.goal}</h3>)
-                }
+                <div className="Sample__container">
+                    <main className="Sample__container__content">
+                    <Calendar
+                        tileClassName={tileClasses}
+                        onChange={onChange} showWeekNumbers value={value} />
+                    </main>
+                </div>
+                <div>
+                    <h3>
+                        Check your progress with your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
+                    </h3>
+                </div>
+                <br />
+                <div>
+                    <h1>Selected Habits:</h1>
+                    {
+                        selectedHabits.map((habit) => <h3>{habit.goal}</h3>)
+                    }
+                </div>
             </div>
         </div>
     );

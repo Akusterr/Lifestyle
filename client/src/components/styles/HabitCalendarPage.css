@@ -39,8 +39,9 @@ body {
     padding: 10px;
 }
 
-.Sample__container>*>* {
+.Sample__container {
     margin: 10px;
+    height: 100vh;
 }
 
 .Sample__container__content {

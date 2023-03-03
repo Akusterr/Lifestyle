@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./styles/DailyHabitPage.css";
 import { Link } from "react-router-dom"
 import DailyHabitList from "./DailyHabitList";
@@ -6,11 +6,14 @@ import moment from 'moment';
 import HabitFormModal from "./HabitFormModal";
 import {Button} from 'semantic-ui-react';
 import Draggable from 'react-draggable';
+import {DarkModeContext} from '../context/DarkModeContext'
+
 
 
 
 
 function DailyHabitPage(props) {
+    const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
 
     const [detailHabit, setDetailHabit] = useState({})
     const [habits, setHabits] = useState([])
@@ -71,6 +74,10 @@ function DailyHabitPage(props) {
         setSelectedDate(newSelectedDate);
     }
 
+    const handleDarkModeClick = () => {
+        toggleDarkMode();
+    }
+
     const renderDate = () => {
         const curr = new Date; // get current date
         // we need to shift to the left because we want our weeks to start on Mon but JS dates think they start on Sun
@@ -110,34 +117,38 @@ function DailyHabitPage(props) {
 
     return (
         <div className="dhp-wrapper">
-            <div>
-                {renderDate()}
-            </div>
-            <br />
-            <HabitFormModal open={modalOpen} setOpen={setModalOpen} habit={detailHabit} fetchHabits={fetchHabits} onUser={onUser}/>
-            <br />
-            <div>
-                <Button>
-                    <Link exact to='/habitCalendarPage'>Calendar</Link>
-                </Button>
-            </div>
-            <br />
-            <div>
-                {days.map((date) => {
-                    return <Button onClick={()=> handleClickDate(date)} primary={selectedDate.getDay() === date.idx}>{date.name}</Button>
-                })}
-            </div>
+            <div className={darkMode ? `dark` : `light`} >
+                <div>
+                    {renderDate()}
+                </div>
+                <br />
+                <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
+                <br />
+                <br />
+                <HabitFormModal open={modalOpen} setOpen={setModalOpen} habit={detailHabit} fetchHabits={fetchHabits} onUser={onUser}/>
+                <br />
+                <div>
+                    <Button>
+                        <Link exact to='/habitCalendarPage'>Calendar</Link>
+                    </Button>
+                </div>
+                <br />
+                <div className="yellow">
+                    {days.map((date) => {
+                        return <Button onClick={()=> handleClickDate(date)} primary={selectedDate.getDay() === date.idx}>{date.name}</Button>
+                    })}
+                </div>
 
-           
-                    <div className="habits">
-                        <br />
-                        <h1>To Do:</h1>
-                        <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={incompleteHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
-                        <h1>Completed for today:</h1>
-                        <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={completeHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
-                        <br />
-                    </div>
-                
+            
+                <div className="habits">
+                    <br />
+                    <h1>To Do:</h1>
+                    <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={incompleteHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
+                    <h1>Completed for today:</h1>
+                    <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={completeHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
+                    <br />
+                </div>
+            </div>    
         </div>
     );
 }

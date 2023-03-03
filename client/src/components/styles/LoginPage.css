@@ -1,4 +1,6 @@
 
 .lp-wrapper {
     text-align: center;
+    background-color: grey;
+    height: 100vh;
 }

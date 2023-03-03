@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { DarkModeProvider } from "./context/DarkModeContext";
+import Draggable from 'react-draggable';
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
 import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import DailyHabitPage from "./components/DailyHabitPage";
 import HabitCalendarPage from "./components/HabitCalendarPage"
-import NewHabitFormPage from './components/NewHabitFormPage';
 import WeeklyHabitStatsPage from './components/WeeklyHabitStatsPage';
 import RegistrationPage from './components/RegistrationPage';
 import LoginPage from './components/LoginPage';
-import 'semantic-ui-css/semantic.min.css'
-import Draggable from 'react-draggable';
 
 function App() {
 
@@ -30,6 +30,7 @@ function App() {
 
   return (
     <div>
+    <DarkModeProvider>
     <Router>
       <Routes>
         <Route exact path="/" element={<Navbar onUser={onUser} setOnUser={setOnUser} />} >
@@ -37,7 +38,6 @@ function App() {
         <Route path="/loginPage" element={<LoginPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/dailyHabitPage" element={<DailyHabitPage Draggable={Draggable} onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/habitCalendarPage" element={<HabitCalendarPage onUser={onUser} setOnUser={setOnUser} />} />
-        {/* <Route path="/newHabitFormPage" element={<NewHabitFormPage onUser={onUser} />}/> */}
         <Route path="/weeklyHabitStatsPage" element={<WeeklyHabitStatsPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/registrationPage" element={<RegistrationPage />} />
         <Route path="/homePage" element={<HomePage />} />
@@ -45,6 +45,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </DarkModeProvider>
     </div>
  
   );

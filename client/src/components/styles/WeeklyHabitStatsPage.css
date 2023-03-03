@@ -1,4 +1,6 @@
 
 .whsp-wrapper {
     text-align: center;
+    background-size: cover;
+    height: 100vh;
 }
