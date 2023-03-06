@@ -10,13 +10,12 @@
 }
 
 .hp-wrapper {
-    /* background-image: url("../pictures/habit-zen.jpeg"); */
-    background-position: center;
-    background-size: cover;
+    background-image: url("../pictures/brainmaze.jpeg");
+    background-position: bottom;
+    background-size: 40%;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 50vh;
     text-align: center;
-    font-family: "Kalam", cursive;
 }
 
 

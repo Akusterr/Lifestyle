@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./styles/Navbar.css";
 import { Outlet, Link } from "react-router-dom";
+import {DarkModeContext} from '../context/DarkModeContext'
 
 
 function Navbar({onUser, setOnUser}) {
+    const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
 
     const handleLogout = () => {
         fetch("/logout", {
@@ -17,9 +19,11 @@ function Navbar({onUser, setOnUser}) {
 
     }
 
+    console.log(onUser)
+
     return (
-        <div>
-            {onUser ? (
+        <div className={darkMode ? `dark` : `light`}>
+        {onUser && onUser.id ? (
             <nav className="nav">        
                 <div>
                     <Link to="/homePage">Home</Link>

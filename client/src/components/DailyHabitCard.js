@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
-import { Button, Card, Image, Icon} from 'semantic-ui-react'
+import { Button, Card, Image, Icon, Grid} from 'semantic-ui-react'
 import Draggable from 'react-draggable';
 
 
@@ -49,7 +49,7 @@ function DailyHabitCard( {habit, openModalForEdit, fetchHabits, isDragging, text
 
     return (
         
-        <div>
+        <Grid.Column width={5}>
             <Draggable>     
                 <div>
                     <Card>
@@ -63,7 +63,7 @@ function DailyHabitCard( {habit, openModalForEdit, fetchHabits, isDragging, text
                     </Card>
                 </div>
             </Draggable>
-        </div>
+        </Grid.Column>
             
     );
 }

@@ -4,9 +4,10 @@ import { Link } from "react-router-dom"
 import DailyHabitList from "./DailyHabitList";
 import moment from 'moment';
 import HabitFormModal from "./HabitFormModal";
-import {Button} from 'semantic-ui-react';
+import {Button, Grid} from 'semantic-ui-react';
 import Draggable from 'react-draggable';
 import {DarkModeContext} from '../context/DarkModeContext'
+import { stringifyDate } from "./shared/shared";
 
 
 
@@ -20,7 +21,7 @@ function DailyHabitPage(props) {
     const [modalOpen, setModalOpen] = useState(false)
     const [selectedDate, setSelectedDate] = useState(new Date())
     const onUser = props.onUser || {};
-    const selectedDateString = `${selectedDate.getDay()}/${selectedDate.getMonth()}/${selectedDate.getYear()}`;
+    const selectedDateString = stringifyDate(selectedDate);
 
     const days= [
         {
@@ -103,7 +104,7 @@ function DailyHabitPage(props) {
         const habitIsComplete = !!hab.habit_completion.find((hc) => {
             // find a habit completion that happend today
             const hcDate = new Date(hc.created_at);
-            const hcDateString = `${hcDate.getDay()}/${hcDate.getMonth()}/${hcDate.getYear()}`;
+            const hcDateString = stringifyDate(hcDate);
             console.log(hcDateString, '---', selectedDateString)
             return hcDateString === selectedDateString;
         })
@@ -140,12 +141,16 @@ function DailyHabitPage(props) {
                 </div>
 
             
-                <div className="habits">
+                <div className="habits" >
                     <br />
+                    <div className="todo">
                     <h1>To Do:</h1>
                     <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={incompleteHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
+                    </div>
+                    <div className="complete">
                     <h1>Completed for today:</h1>
                     <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={completeHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
+                    </div>
                     <br />
                 </div>
             </div>    

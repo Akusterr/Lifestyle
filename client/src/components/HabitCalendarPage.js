@@ -5,6 +5,7 @@ import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMe
 import Calendar from 'react-calendar'
 import { Link } from "react-router-dom"
 import {DarkModeContext} from '../context/DarkModeContext'
+import {stringifyDate} from './shared/shared';
 
 
 
@@ -17,8 +18,10 @@ function HabitCalendarPage(props) {
     // const [relationships, setRelationships] = useState("")
     const [categories, setCategories] = useState([])
     const [habits, setHabits] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [selectedCategory, setSelectedCategory] = useState("ALL");
     const [value, onChange] = useState(new Date());
+    const [selectedHabits, setSelectedHabits] = useState([]);
+    const [selectedHabit, setSelectedHabit] = useState(null);
     
     const handleClick = (e) => {
         setSelectedCategory(e.target.value)
@@ -42,53 +45,84 @@ function HabitCalendarPage(props) {
         .then(hab => setHabits(hab))
     }, [])
 
-    const selectedHabits = selectedCategory === 'ALL' ? habits : habits.filter(h => h.category_id === parseInt(selectedCategory));
-    // console.log({habits, selectedCategory, selectedHabits})
+    useEffect(() => {
+        const selected = selectedCategory === 'ALL' ? habits : habits.filter(h =>{
+            console.log({habitCat: h.category_id, selectedCat: selectedCategory})
+            return  h.category_id === parseInt(selectedCategory)
+        });
+        setSelectedHabits(selected)
+    }, [selectedCategory, habits])
+
+
+
 
 
     const tileClasses = ({date, view}) => {
-        // console.log({date, view})
-        if(date.getDay() === 3){
+        const selectedHabitWasCompletedToday = selectedHabit && !!selectedHabit.habit_completion.find((hc) => {
+            // find a habit completion that happend today
+            const hcDate = new Date(hc.created_at);
+            // Helperize ME!!!!!!
+            const hcDateString = stringifyDate(hcDate);
+            const dateString = stringifyDate(date);
+            if(hcDateString === dateString){
+                console.log(hc)
+                console.log(hcDateString, '---', dateString)
+            }
+        
+            return hcDateString === dateString;
+        })
+        if(selectedHabitWasCompletedToday){
             return 'green'
         }
     }
 
-    
+    console.log({selectedHabits, habits, selectedCategory,
+         filtered: habits.filter((h) => h.category_id === parseInt(selectedCategory))},
+         selectedCategory === 'ALL'
+    )
 
     return (
-        <div className={darkMode ? `dark` : `light`} >
-            <div className="hcp-wrapper">
-                <div>
-                    <Header>
-                        <h2>
-                            Categories
-                        </h2>
-                        
-                    </Header>
-                    {categories.map((cat) => <Button value={cat.id} onClick={handleClick}>{cat.name}</Button>)}
-                    <Button value={'ALL'} onClick={handleClick}>All</Button>
-                </div>
-                <br />
-                <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
+        <div className="top">
+            <div className={darkMode ? `dark` : `light`} >
+                <div className="hcp-wrapper">
+                    <div>
+                        <Header>
+                            <h2>
+                                Categories
+                            </h2>
+                            
+                        </Header>
+                        <br />
+                        {categories.map((cat) => <Button value={cat.id} onClick={handleClick}>{cat.name}</Button>)}
+                        <Button value={'ALL'} onClick={handleClick}>All</Button>
+                    </div>
+                    <br />
+                    <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
 
-                <div className="Sample__container">
-                    <main className="Sample__container__content">
-                    <Calendar
-                        tileClassName={tileClasses}
-                        onChange={onChange} showWeekNumbers value={value} />
-                    </main>
-                </div>
-                <div>
-                    <h3>
-                        Check your progress with your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
-                    </h3>
-                </div>
-                <br />
-                <div>
-                    <h1>Selected Habits:</h1>
-                    {
-                        selectedHabits.map((habit) => <h3>{habit.goal}</h3>)
-                    }
+                    <div className="Sample__container">
+                        <main className="Sample__container__content">
+                        <Calendar
+                            tileClassName={tileClasses}
+                            onChange={onChange}
+                            showWeekNumbers value={value} />
+                        </main>
+                    </div>
+                    <div>
+                        <h3>
+                            Check your progress with your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
+                        </h3>
+                    </div>
+                    <br />
+                    <div className="cal-habs">
+                        <h1>Selected Habits:</h1>
+                        {
+                            selectedHabits.map((habit) => <h3 onClick={() => setSelectedHabit(habit)}>{habit.goal}</h3>)
+                        }
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
                 </div>
             </div>
         </div>

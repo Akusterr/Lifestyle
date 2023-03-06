@@ -1,6 +1,6 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./styles/WeeklyHabitStatsPage.css";
-import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu, Grid } from 'semantic-ui-react'
 import moment from 'moment';
  import {DarkModeContext} from '../context/DarkModeContext'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -8,12 +8,23 @@ import { Doughnut } from "react-chartjs-2";
 
 
 
-function WeeklyHabitStatsPage() {
+function WeeklyHabitStatsPage(props) {
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
+     const onUser = props.onUser || {};
+
+    const [habits, setHabits] = useState([])
 
     const handleDarkModeClick = () => {
         toggleDarkMode();
     }
+
+    const fetchHabits = () => {
+        fetch(`/users/${onUser.id}/habits`)
+            .then(resp => resp.json())
+            .then(hab => setHabits(hab))
+    }
+
+    useEffect(fetchHabits, [])
 
 
     ChartJS.register(ArcElement, Tooltip, Legend);
@@ -46,6 +57,31 @@ function WeeklyHabitStatsPage() {
                     <h1>
                         Weekly Stats
                     </h1>
+                    <Grid className={'statsGrid'}>
+                        {habits.map((hab) => {
+                            
+                            const percentComplete = hab.habit_completion.length / hab.frequency_num * 100
+                            const completeDonutSize = percentComplete;
+                            const goalDonutSize = percentComplete > 100 ? 0 : 100 - percentComplete;
+                            const data = {
+                                labels: ['complete'],
+                                datasets: [
+                                    {
+                                        label: '%complete',
+                                        data: [completeDonutSize, goalDonutSize],
+                                        backgroundColor: ['rgba(153, 102, 255, 0.2)', 'white'],
+                                        borderColor: ['rgba(153, 102, 255, 1)']
+                                    },
+                                ]
+                            }
+                            return (
+                                <Grid.Column width={5}>
+                                    <h4>{hab.goal}</h4>
+                                    <Doughnut data={data} />
+                                </Grid.Column>
+                                )
+                        })}
+                    </Grid>
                 </div>
             </div>
         </div>

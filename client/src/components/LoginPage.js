@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./styles/LoginPage.css";
 import { Link } from "react-router-dom"
+import {Button, Grid, Form, Divider, Segment} from 'semantic-ui-react';
 
 
 function LoginPage() {

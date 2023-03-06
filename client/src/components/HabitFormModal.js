@@ -12,8 +12,6 @@ function HabitFormModal(props) {
     const [startDate, setStartDate] = useState(null)
     const [categories, setCategories] = useState([])
 
-    console.log(categories, "herrrrrre")
-
     const onUser = props.onUser || {};
     const habit = props.habit || {};
     const editMode = !!habit.id;
@@ -103,7 +101,7 @@ function HabitFormModal(props) {
                         <h3>{editMode ? 'Update Habit' : 'Create a New Habit' }</h3>
                         <Input type="text" name="goal" placeholder="New Habit Goal" value={goal} onChange={(e) => setGoal(e.target.value)} />
                         <Input type="number" name="frequency" placeholder="Times Daily" value={frequency} onChange={(e) => setFrequency(e.target.value)} />
-                        <select className="whoNeedsSemantic" >
+                        <select className="whoNeedsSemantic" onChange={(e) => setCategory(e.target.value)}>
                             {categories.map((cat) => <option value={cat.id}>{cat.name}</option>)}
                         </select>
                         <Input type="date" name="start date" placeholder="" value={startDate} onChange={(e) => setStartDate(e.target.value)} />

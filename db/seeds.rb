@@ -35,7 +35,7 @@ c6 = Category.create(name: "Misc")
 
 puts "Seeding habits..."
 
-h1 = Habit.create(user_id: u1.id, goal: "Take my vitamins", frequency_num: 1, frequency_denominator: "week", start_date: 02/20/2023, display_order: 4, category_id: c1.id)
+h1 = Habit.create(user_id: u1.id, goal: "Take my vitamins", frequency_num: 7, frequency_denominator: "week", start_date: 02/20/2023, display_order: 4, category_id: c1.id)
 h2 = Habit.create(user_id: u1.id, goal: "Drink 8 glasses of water", frequency_num: 8, frequency_denominator: "week", start_date: 02/20/2023, display_order: 1, category_id: c3.id)
 h3 = Habit.create(user_id: u1.id, goal: "Yoga", frequency_num: 1, frequency_denominator: "week", start_date: 02/20/2023, display_order: 5, category_id: c2.id)
 h4 = Habit.create(user_id: u1.id, goal: "Wake up at 7am", frequency_num: 1, frequency_denominator: "week", start_date: 02/20/2023, display_order: 0, category_id: c1.id)

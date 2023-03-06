@@ -12,9 +12,10 @@ import WeeklyHabitStatsPage from './components/WeeklyHabitStatsPage';
 import RegistrationPage from './components/RegistrationPage';
 import LoginPage from './components/LoginPage';
 
-function App() {
 
+function App() {
   const [onUser, setOnUser] = useState(null);
+
 
   useEffect(() => {
     fetch("/me")
