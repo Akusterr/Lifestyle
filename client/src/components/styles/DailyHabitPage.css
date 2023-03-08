@@ -2,6 +2,7 @@
 .dhp-wrapper {
     text-align: center;
     padding: 30px;
+    padding-bottom: 200px;
 }
 
 .box {
@@ -14,6 +15,9 @@
 }
 
 .todo {
-    margin-bottom: 300px;
+    margin-bottom: 150px;
 }
 
+.buttons {
+    display: flex;
+}

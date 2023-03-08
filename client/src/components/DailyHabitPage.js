@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import DailyHabitList from "./DailyHabitList";
 import moment from 'moment';
 import HabitFormModal from "./HabitFormModal";
-import {Button, Grid} from 'semantic-ui-react';
+import {Button, Icon} from 'semantic-ui-react';
 import Draggable from 'react-draggable';
 import {DarkModeContext} from '../context/DarkModeContext'
 import { stringifyDate } from "./shared/shared";
@@ -75,9 +75,9 @@ function DailyHabitPage(props) {
         setSelectedDate(newSelectedDate);
     }
 
-    const handleDarkModeClick = () => {
-        toggleDarkMode();
-    }
+    // const handleDarkModeClick = () => {
+    //     toggleDarkMode();
+    // }
 
     const renderDate = () => {
         const curr = new Date; // get current date
@@ -117,21 +117,12 @@ function DailyHabitPage(props) {
      })
 
     return (
-        <div className="dhp-wrapper">
-            <div className={darkMode ? `dark` : `light`} >
+        <div className={darkMode ? `dark` : `light`}>
+            {/* <Icon size ="big" onClick ={handleDarkModeClick} className={darkMode ? "toggle off" : "toggle on"}></Icon> */}
+                <br />
+            <div className="dhp-wrapper" >
                 <div>
                     {renderDate()}
-                </div>
-                <br />
-                <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
-                <br />
-                <br />
-                <HabitFormModal open={modalOpen} setOpen={setModalOpen} habit={detailHabit} fetchHabits={fetchHabits} onUser={onUser}/>
-                <br />
-                <div>
-                    <Button>
-                        <Link exact to='/habitCalendarPage'>Calendar</Link>
-                    </Button>
                 </div>
                 <br />
                 <div className="yellow">
@@ -139,16 +130,19 @@ function DailyHabitPage(props) {
                         return <Button onClick={()=> handleClickDate(date)} primary={selectedDate.getDay() === date.idx}>{date.name}</Button>
                     })}
                 </div>
-
-            
+                <br />
+                <HabitFormModal open={modalOpen} setOpen={setModalOpen} habit={detailHabit} fetchHabits={fetchHabits} onUser={onUser}/>
+                <br />
+                <h1><u>{onUser.username}'s Daily Habit Checklist:</u></h1>
+                <br />
                 <div className="habits" >
-                    <br />
                     <div className="todo">
-                    <h1>To Do:</h1>
+                    <br />
                     <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={incompleteHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
                     </div>
                     <div className="complete">
                     <h1>Completed for today:</h1>
+                    <br />
                     <DailyHabitList selectedDate={selectedDate} openModalForEdit={openModalForEdit} habits={completeHabits} fetchHabits={fetchHabits} Draggable={Draggable}/>
                     </div>
                     <br />

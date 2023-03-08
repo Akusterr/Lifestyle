@@ -1,5 +1,9 @@
+require 'byebug'
+
 class UsersController < ApplicationController
     skip_before_action :authorize, only: :create
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
+    rescue_from ActiveRecord::RecordInvalid, with: :invalid
 
 
     def index
@@ -30,7 +34,7 @@ class UsersController < ApplicationController
     end
 
     def userHabits
-        habits = Habit.where(:user_id == @current_user.id)
+        habits = Habit.where(user_id: @current_user.id)
         render json: habits, status: :ok
     end
 
@@ -38,6 +42,14 @@ class UsersController < ApplicationController
 
     def user_params
         params.permit(:id, :username, :email, :password)
+    end
+
+    def not_found
+        render json: { error: "User not found"}, status: :not_found
+    end
+
+    def invalid(invalid)
+        render json: { errors: invalid.record.errors.full_messages }
     end
 
 end

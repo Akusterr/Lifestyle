@@ -1,21 +1,30 @@
 
 .dark {
-    background-color: #5A5F5A;
-    color: whitegrey;
+    background-color: #091A22;
+    /* color: whitesmoke; */
+    color: #F5FDE8;
+    padding-bottom: 100px;
 }
 
 .light {
-    background-color: whitesmoke;
-    color: darkslategrey;
+    background-color: #F5FDE8;
+    /* color: #091A22; */
+    color: #091A22;
+    padding-bottom: 100px;
 }
 
 .hp-wrapper {
-    background-image: url("../pictures/brainmaze.jpeg");
-    background-position: bottom;
-    background-size: 40%;
+    background-image: url("../pictures/brain.jpeg");
+    background-position: center;
+    background-size: 50%;
     background-repeat: no-repeat;
-    height: 50vh;
+    height: 80vh;
     text-align: center;
+}
+
+.quotes{
+    width: 80%;
+    margin:auto;
 }
 
 

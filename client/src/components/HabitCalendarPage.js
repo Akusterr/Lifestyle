@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from "react";
 import "./styles/HabitCalendarPage.css";
 import 'react-calendar/dist/Calendar.css';
-import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
+import { Button, Header, Icon, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
 import Calendar from 'react-calendar'
 import { Link } from "react-router-dom"
 import {DarkModeContext} from '../context/DarkModeContext'
@@ -27,9 +27,9 @@ function HabitCalendarPage(props) {
         setSelectedCategory(e.target.value)
     }
 
-    const handleDarkModeClick = () => {
-        toggleDarkMode();
-    }
+    // const handleDarkModeClick = () => {
+    //     toggleDarkMode();
+    // }
 
     const onUser = props.onUser || {};
 
@@ -84,20 +84,23 @@ function HabitCalendarPage(props) {
     return (
         <div className="top">
             <div className={darkMode ? `dark` : `light`} >
+                {/* <Icon size ="big" onClick ={handleDarkModeClick} className={darkMode ? "toggle off" : "toggle on"}></Icon> */}
+                    <br />
                 <div className="hcp-wrapper">
                     <div>
-                        <Header>
-                            <h2>
-                                Categories
-                            </h2>
-                            
-                        </Header>
+                        <h1><u>{onUser.username}'s Calendar</u></h1>
+                        <h3>Select a category:</h3>
                         <br />
                         {categories.map((cat) => <Button value={cat.id} onClick={handleClick}>{cat.name}</Button>)}
                         <Button value={'ALL'} onClick={handleClick}>All</Button>
                     </div>
                     <br />
-                    <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
+                    <br />
+                    {/* <div>
+                        <h3>
+                            Check your Stats <Link exact to='/weeklyHabitStatsPage'><Icon size="large" className="bullseye"></Icon></Link>
+                        </h3>
+                    </div> */}
 
                     <div className="Sample__container">
                         <main className="Sample__container__content">
@@ -107,16 +110,12 @@ function HabitCalendarPage(props) {
                             showWeekNumbers value={value} />
                         </main>
                     </div>
-                    <div>
-                        <h3>
-                            Check your progress with your weekly <Link exact to='/weeklyHabitStatsPage'>Stats</Link>
-                        </h3>
-                    </div>
                     <br />
                     <div className="cal-habs">
-                        <h1>Selected Habits:</h1>
+                        <h1><u>Selected Habits:</u></h1>
+                        <br />
                         {
-                            selectedHabits.map((habit) => <h3 onClick={() => setSelectedHabit(habit)}>{habit.goal}</h3>)
+                            selectedHabits.map((habit) => <Button onClick={() => setSelectedHabit(habit)}>{habit.goal}</Button>)
                         }
                         <br />
                         <br />

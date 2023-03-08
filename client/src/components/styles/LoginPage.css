@@ -1,6 +1,21 @@
 
 .lp-wrapper {
+    background-image: url("../pictures/brainmaze.jpeg");
+    background-position: center;
+    background-size: 35%;
+    background-repeat: no-repeat;
     text-align: center;
-    background-color: grey;
+    background-color: #091A22;
+    color: whitesmoke;
     height: 100vh;
+}
+
+.loginForm {
+    width: 40%;
+    justify-content: center;
+    margin: auto;
+}
+
+.title-text {
+    color: black;
 }

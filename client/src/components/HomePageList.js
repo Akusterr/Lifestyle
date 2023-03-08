@@ -11,9 +11,10 @@ function DailyHabitList( {quotes} ) {
     useEffect(() => {
         let q = quotes[Math.floor(Math.random()*quotes.length)]
         // if quote is from trump lets select another
-        // if(q.author.includes('Trump')){
-        //     q = quotes[Math.floor(Math.random()*quotes.length)]
-        // }
+        if(q && q.author.includes('Trump')){
+            q = quotes[Math.floor(Math.random()*quotes.length)]
+        }
+        
         if(q){
             setQuote(q)
         }

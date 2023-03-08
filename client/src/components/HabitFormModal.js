@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./styles/HabitFormModal.css";
-import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
+import { Button, Icon, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
 import { CategoryScale } from "chart.js";
 
 
@@ -8,7 +8,7 @@ import { CategoryScale } from "chart.js";
 function HabitFormModal(props) {
     const [goal, setGoal] = useState("")
     const [frequency, setFrequency] = useState(1)
-    const [category, setCategory] = useState(1)
+    const [category, setCategory] = useState(49)
     const [startDate, setStartDate] = useState(null)
     const [categories, setCategories] = useState([])
 
@@ -93,7 +93,7 @@ function HabitFormModal(props) {
                 onClose={() => setOpen(false)}
                 onOpen={() => setOpen(true)}
                 open={open}
-                trigger={<Button>Create Habit</Button>} 
+                trigger={<Button>Add a new Habit</Button>} 
             >
                 
                 <Modal.Content>

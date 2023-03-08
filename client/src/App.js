@@ -41,7 +41,7 @@ function App() {
         <Route path="/habitCalendarPage" element={<HabitCalendarPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/weeklyHabitStatsPage" element={<WeeklyHabitStatsPage onUser={onUser} setOnUser={setOnUser} />} />
         <Route path="/registrationPage" element={<RegistrationPage />} />
-        <Route path="/homePage" element={<HomePage />} />
+        <Route path="/homePage" element={<HomePage onUser={onUser}/>} />
 
         </Route>
       </Routes>

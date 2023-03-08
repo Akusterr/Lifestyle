@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { DndProvider } from 'react-dnd'
+import "./styles/DailyHabitCard.css";
 import { Button, Card, Image, Icon, Grid} from 'semantic-ui-react'
 import Draggable from 'react-draggable';
 
@@ -48,22 +47,23 @@ function DailyHabitCard( {habit, openModalForEdit, fetchHabits, isDragging, text
     }
 
     return (
-        
-        <Grid.Column width={5}>
-            <Draggable>     
-                <div>
-                    <Card>
-                        <Card.Content>
-                            <Card.Header>{habit.goal}</Card.Header>
-                            <p>Completed {selectedDateCompletions.length} times today</p>
-                            <Button onClick={onCompleteClicked}>Complete!</Button>
-                            <Button onClick={handleDeleteHabit} floated="right">X</Button>
-                            <Button onClick={()=> openModalForEdit(habit)}>Edit</Button>
-                        </Card.Content>
-                    </Card>
-                </div>
-            </Draggable>
-        </Grid.Column>
+        <div className="h-card">
+            <Grid.Column width={5}>
+                <Draggable>     
+                    <div>
+                        <Card>
+                            <Card.Content>
+                                <Card.Header>{habit.goal}</Card.Header>
+                                <p>Completed {selectedDateCompletions.length} times today</p>
+                                <Icon size="large" onClick={onCompleteClicked} className="check"></Icon>
+                                <Icon size="large" onClick={()=> openModalForEdit(habit)} className="edit"></Icon>
+                                <Icon size="large" onClick={handleDeleteHabit} className="trash alternate outline"></Icon>
+                            </Card.Content>
+                        </Card>
+                    </div>
+                </Draggable>
+            </Grid.Column>
+        </div>    
             
     );
 }

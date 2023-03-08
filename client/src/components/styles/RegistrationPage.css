@@ -1,6 +1,12 @@
 
 .rp-wrapper {
     text-align: center;
-    background-color: grey;
+    background-color: #091A22;
     height: 100vh;
+}
+
+.registerForm {
+    width: 40%;
+    justify-content: center;
+    margin: auto;
 }

@@ -1,9 +1,10 @@
 import React, {useContext, useState, useEffect} from "react";
 import "./styles/HomePage.css";
-import { Link } from "react-router-dom"
-import { Button, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
+// import { Link } from "react-router-dom"
+// import { Button, Icon, Header, Image, Modal, Input, Popup } from 'semantic-ui-react'
 import {DarkModeContext} from '../context/DarkModeContext'
 import HomePageList from "./HomePageList"
+// import toggleSwitch from "./ToggleSwitch";
 
 
 const config = {
@@ -12,13 +13,13 @@ const config = {
 }
 
 
-function HomePage() {
+function HomePage({onUser}) {
     const {darkMode, toggleDarkMode} = useContext(DarkModeContext);
     const [quotes, setQuotes] = useState([])
 
-    const handleDarkModeClick = () => {
-        toggleDarkMode();
-    }
+    // const handleDarkModeClick = () => {
+    //     toggleDarkMode();
+    // }
 
     useEffect(() => {
         fetch(config.apiUrl)
@@ -34,22 +35,17 @@ function HomePage() {
     return (
         <div>
             <div className={darkMode ? `dark` : `light`} >
+                {/* <Icon size ="big" onClick ={handleDarkModeClick} className={darkMode ? "toggle off" : "toggle on"}></Icon> */}
+                <br />
+                <div className="quotes">
+                        <HomePageList quotes={quotes}/>
+                </div>
+                <br />
                 <div className="hp-wrapper">
                     <div>
-                        <Button onClick ={handleDarkModeClick}>{darkMode ? "Light" : "Dark"} Mode</Button>
-                        <br />
-                        <br />
-                        <h1>
-                            Ready to create your ideal <strong>Lifestyle</strong>? Find your daily <Link exact to='/dailyHabitPage'>checklist</Link>
-                        </h1>
-                        <h1>***SCIENCE info about how long it takes to create a habit***</h1>
+                        {/* <h1><u>Welcome! {onUser.username}</u></h1> */}
+                        <h2>Studies say it take <u>90 days</u> to create a new habit<br />This app was created to help you reach your goal</h2>
                     </div>
-                </div>
-                <div>
-                    <br />
-                    <br />
-                    <br />
-                  <HomePageList quotes={quotes}/>
                 </div>
             </div>
         </div>

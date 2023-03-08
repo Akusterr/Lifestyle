@@ -12,6 +12,7 @@ function HomePageCard({quote, quoteIndex, setQuoteIndex}) {
     return (
         <div className="hpc-wrapper">
             <div className="ui floating message">
+                <h2>Daily Inspiration</h2>
                 <Message>
                     {read ? null : <h1><u>{quote.author}</u> : <em>{quote.text}</em></h1>}
                 </Message>
