@@ -140,7 +140,7 @@ hc6m = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-03')
 hc6n = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-04')
 hc6o = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-05')
 hc6p = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-06')
-hc6q = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-07')
+
 
 
 

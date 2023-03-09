@@ -1,14 +1,12 @@
 
 .dark {
     background-color: #091A22;
-    /* color: whitesmoke; */
-    color: #F5FDE8;
+    color: #B5A8A1;
     padding-bottom: 100px;
 }
 
 .light {
-    background-color: #F5FDE8;
-    /* color: #091A22; */
+    background-color: #B5A8A1;
     color: #091A22;
     padding-bottom: 100px;
 }
@@ -23,7 +21,7 @@
 }
 
 .quotes{
-    width: 80%;
+    width: 60%;
     margin:auto;
 }
 

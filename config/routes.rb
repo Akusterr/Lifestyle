@@ -27,11 +27,8 @@ Rails.application.routes.draw do
 
   post "/habits/:habitId/habitCompletions", to: "habit_completions#create"
 
+  patch "/updateUser/:id", to: "users#update"
 
+  delete "/deleteUser/:id", to: "users#destroy"
 
-  
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end

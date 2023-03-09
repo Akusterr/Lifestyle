@@ -28,7 +28,6 @@ class HabitsController < ApplicationController
         habit = Habit.find(params[:id])
         habit.attributes = habit_params
         habit.save!
-        # Habit.update!(habit_params)
         render json: habit, status: :accepted
     end
 

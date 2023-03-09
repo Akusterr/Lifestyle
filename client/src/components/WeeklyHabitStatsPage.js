@@ -15,10 +15,6 @@ function WeeklyHabitStatsPage(props) {
 
     const [habits, setHabits] = useState([])
 
-    // const handleDarkModeClick = () => {
-    //     toggleDarkMode();
-    // }
-
     const fetchHabits = () => {
         fetch(`/users/${onUser.id}/habits`)
             .then(resp => resp.json())
@@ -104,20 +100,20 @@ function WeeklyHabitStatsPage(props) {
                             })
 
                             const data = {
-                                labels: ['complete'],
+                                
                                 datasets: [
                                     // 90 days % complete vs actual
                                     {
                                         label: '%complete past 90 days',
                                         data: [ percentCompletePastNinety, pastNinetyGoalDonutSize],
-                                        backgroundColor: ['rgba(66, 245, 69, 0.6)', 'white'],
-                                        borderColor: ['rgba(66, 245, 69, 1)']
+                                        backgroundColor: ['rgba(128,128,0, 0.4)', 'white'],
+                                        borderColor: ['rgba(128,128,0, 1)']
                                     },
                                      // current week % complete vs actual
                                     {
                                         label: '%complete this week',
                                         data: [percentCompleteThisWeek, weeklyGoalDonutSize],
-                                        backgroundColor: ['rgba(153, 102, 255, 0.6)', 'white'],
+                                        backgroundColor: ['rgba(153, 102, 255, 0.4)', 'white'],
                                         borderColor: ['rgba(153, 102, 255, 1)']
                                     },
                                 ]

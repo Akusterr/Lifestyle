@@ -84,7 +84,6 @@ function HabitCalendarPage(props) {
     return (
         <div className="top">
             <div className={darkMode ? `dark` : `light`} >
-                {/* <Icon size ="big" onClick ={handleDarkModeClick} className={darkMode ? "toggle off" : "toggle on"}></Icon> */}
                     <br />
                 <div className="hcp-wrapper">
                     <div>
@@ -96,12 +95,6 @@ function HabitCalendarPage(props) {
                     </div>
                     <br />
                     <br />
-                    {/* <div>
-                        <h3>
-                            Check your Stats <Link exact to='/weeklyHabitStatsPage'><Icon size="large" className="bullseye"></Icon></Link>
-                        </h3>
-                    </div> */}
-
                     <div className="Sample__container">
                         <main className="Sample__container__content">
                         <Calendar

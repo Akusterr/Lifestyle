@@ -75,9 +75,6 @@ function DailyHabitPage(props) {
         setSelectedDate(newSelectedDate);
     }
 
-    // const handleDarkModeClick = () => {
-    //     toggleDarkMode();
-    // }
 
     const renderDate = () => {
         const curr = new Date; // get current date
@@ -118,7 +115,6 @@ function DailyHabitPage(props) {
 
     return (
         <div className={darkMode ? `dark` : `light`}>
-            {/* <Icon size ="big" onClick ={handleDarkModeClick} className={darkMode ? "toggle off" : "toggle on"}></Icon> */}
                 <br />
             <div className="dhp-wrapper" >
                 <div>

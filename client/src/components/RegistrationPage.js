@@ -30,16 +30,6 @@ function RegistrationPage() {
             body: JSON.stringify(info)
         })
 
-
-        // .then((resp) => resp.json())
-        // .then((U) => {
-        //     if(U.error) {
-        //         setUserError(U.error)
-        //     } else {
-        //         console.log()
-        //     }
-        // })
-
         .then(resp => resp.json())
         .then(console.log)
     }

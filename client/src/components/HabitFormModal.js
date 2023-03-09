@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import "./styles/HabitFormModal.css";
 import { Button, Icon, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
-import { CategoryScale } from "chart.js";
 
 
 
@@ -59,7 +58,6 @@ function HabitFormModal(props) {
         })
         .then(resp => resp.json())
         .then((hab) => {
-            // console.log('created habit:', hab)
             props.fetchHabits();
             setOpen(false)
         })

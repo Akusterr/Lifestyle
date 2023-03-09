@@ -37,18 +37,6 @@ function LoginPage() {
                 window.location.href = 'http://localhost:4000/homePage'
             }
         })
-
-
-
-
-
-        // .then(resp => resp.json())
-        // .then(user => newPerson(user))
-
-        // const newPerson = (user) => {
-        //     setLogin(user)
-        //     window.location.href = 'http://localhost:4000/homePage'
-        // }
       
     }
 
