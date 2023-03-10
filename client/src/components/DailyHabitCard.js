@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import "./styles/DailyHabitCard.css";
 import { Button, Card, Image, Icon, Grid} from 'semantic-ui-react'
 import Draggable from 'react-draggable';
+import {HOSTNAME} from '../constants';
 
 
 function DailyHabitCard( {habit, openModalForEdit, fetchHabits, isDragging, text, selectedDate, Draggable} ) {
@@ -22,7 +23,7 @@ function DailyHabitCard( {habit, openModalForEdit, fetchHabits, isDragging, text
 
     const onCompleteClicked = (e) => {
         
-        fetch("/habits/:habitId/habitCompletions", {
+        fetch(HOSTNAME + "/habits/:habitId/habitCompletions", {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'
@@ -36,7 +37,7 @@ function DailyHabitCard( {habit, openModalForEdit, fetchHabits, isDragging, text
 
     const handleDeleteHabit = () => {
 
-            fetch(`http://localhost:4000/habits/${habit.id}`, {
+            fetch(`${HOSTNAME}/habits/${habit.id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

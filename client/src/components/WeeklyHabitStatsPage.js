@@ -49,7 +49,6 @@ function WeeklyHabitStatsPage(props) {
 
     return (
         <div className={darkMode ? `dark` : `light`} >
-            {/* <Icon size ="big" onClick ={handleDarkModeClick} className={darkMode ? "toggle off" : "toggle on"}></Icon> */}
             <br />
             <div className="whsp-wrapper">
                 <div>
@@ -57,12 +56,6 @@ function WeeklyHabitStatsPage(props) {
                 </div>
                 <br />
                 <br />
-                {/* <div>
-                    <h3>
-                        Go back to Checklist<Link exact to='/DailyHabitPage'><Icon size="large" className="tasks"></Icon></Link>
-                    </h3>
-                </div>
-                <br /> */}
                 <div>
                     <h1>
                         <u>{onUser.username}'s Weekly Stats</u>

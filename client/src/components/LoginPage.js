@@ -3,6 +3,7 @@ import "./styles/LoginPage.css";
 import { Link } from "react-router-dom"
 import {DarkModeContext} from '../context/DarkModeContext'
 import {Button, Grid, Form, Divider, Segment} from 'semantic-ui-react';
+import { HOSTNAME } from "../constants";
 
 
 function LoginPage() {
@@ -34,7 +35,7 @@ function LoginPage() {
                 setError(data.error)
             } else {
                 setLogin(data)
-                window.location.href = 'http://localhost:4000/homePage'
+                window.location.href = HOSTNAME + '/homePage'
             }
         })
       

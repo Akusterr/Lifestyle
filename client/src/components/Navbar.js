@@ -3,6 +3,7 @@ import "./styles/Navbar.css";
 import { Button, Icon, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu } from 'semantic-ui-react'
 import { Outlet, Link } from "react-router-dom";
 import {DarkModeContext} from '../context/DarkModeContext'
+import {HOSTNAME} from '../constants';
 
 
 function Navbar({onUser, setOnUser}) {
@@ -14,7 +15,7 @@ function Navbar({onUser, setOnUser}) {
         }).then((resp => {
             if (resp.ok){
                 setOnUser(null)
-                window.location.href = "http://localhost:4000/loginPage"
+                window.location.href = HOSTNAME + "/loginPage"
             }
         }))
 
@@ -45,7 +46,9 @@ function Navbar({onUser, setOnUser}) {
                     <Icon size ="large" onClick ={handleDarkModeClick} className={darkMode ? "toggle off" : "toggle on"}></Icon>
                 </nav>
                     ) : (
-                null )}
+                    <div>
+                        <Link to="/loginPage"></Link>
+                    </div> )}
 
                 <Outlet />
             </div>

@@ -77,8 +77,8 @@ hc2l = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-02')
 hc2m = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-03')
 hc2n = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-04')
 hc2o = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-05')
-hc2p = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-06')
-hc2q = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-07')
+# hc2p = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-06')
+# hc2q = HabitCompletion.create!(habit_id: h2.id, created_at: '2023-03-07')
 
 
 hc3a = HabitCompletion.create!(habit_id: h3.id, created_at: '2023-02-19')
@@ -94,7 +94,7 @@ hc3j = HabitCompletion.create!(habit_id: h3.id, created_at: '2023-03-02')
 hc3k = HabitCompletion.create!(habit_id: h3.id, created_at: '2023-03-03')
 hc3l = HabitCompletion.create!(habit_id: h3.id, created_at: '2023-03-04')
 hc3m = HabitCompletion.create!(habit_id: h3.id, created_at: '2023-03-05')
-hc3n = HabitCompletion.create!(habit_id: h3.id, created_at: '2023-03-07')
+# hc3n = HabitCompletion.create!(habit_id: h3.id, created_at: '2023-03-07')
 
 
 hc4a = HabitCompletion.create!(habit_id: h4.id, created_at: '2023-02-19')
@@ -121,7 +121,7 @@ hc5h = HabitCompletion.create!(habit_id: h5.id, created_at: '2023-03-02')
 hc5i = HabitCompletion.create!(habit_id: h5.id, created_at: '2023-03-03')
 hc5j = HabitCompletion.create!(habit_id: h5.id, created_at: '2023-03-04')
 hc5k = HabitCompletion.create!(habit_id: h5.id, created_at: '2023-03-05')
-hc5l = HabitCompletion.create!(habit_id: h5.id, created_at: '2023-03-06')
+# hc5l = HabitCompletion.create!(habit_id: h5.id, created_at: '2023-03-06')
 
 
 hc6a = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-02-19')
@@ -139,7 +139,7 @@ hc6l = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-02')
 hc6m = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-03')
 hc6n = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-04')
 hc6o = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-05')
-hc6p = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-06')
+# hc6p = HabitCompletion.create!(habit_id: h6.id, created_at: '2023-03-06')
 
 
 

@@ -27,10 +27,6 @@ function HabitCalendarPage(props) {
         setSelectedCategory(e.target.value)
     }
 
-    // const handleDarkModeClick = () => {
-    //     toggleDarkMode();
-    // }
-
     const onUser = props.onUser || {};
 
     useEffect(()=>{

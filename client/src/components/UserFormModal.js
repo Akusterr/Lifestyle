@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./styles/UserFormModal.css";
 import { Button, Icon, Header, Image, Modal, Input, Dropdown, DropdownItem, DropdownMenu, Form } from 'semantic-ui-react'
+import { HOSTNAME } from "../constants";
 
 function UserFromModal(props) {
     console.log(props)
@@ -43,7 +44,7 @@ function UserFromModal(props) {
             })
                 .then((resp) => resp.json())
                 .then(user(null));
-                window.location.href = 'http://localhost:4000/loginPage'
+                window.location.href = HOSTNAME + '/loginPage'
     }
 
 
